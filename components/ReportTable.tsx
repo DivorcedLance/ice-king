@@ -21,17 +21,10 @@ const ReportTable: React.FC = () => {
 
     try {
       const response = await fetch('/api/reporte', {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          temperatura: 25.0,
-          presion: 1010.0,
-          altitud: 200,
-          humedad: 60,
-          distancia: 15.0,
-        }),
       });
 
       if (!response.ok) {
@@ -39,7 +32,7 @@ const ReportTable: React.FC = () => {
       }
 
       const data = await response.json();
-      setReports((prevReports) => [...prevReports, data.data]);
+      setReports((prevReports) => [...prevReports, ...data]);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -51,6 +44,10 @@ const ReportTable: React.FC = () => {
     // Llama a la función fetchReports al cargar el componente
     fetchReports();
   }, []);
+
+  useEffect(() => {
+    console.log('reports', reports);
+  }, [reports]);
 
   return (
     <div>

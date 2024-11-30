@@ -1,12 +1,18 @@
-import { Pool } from 'pg';
+import { createClient } from '@libsql/client';
 
-// Configura la conexión a la base de datos
-export const pool = new Pool({
-  connectionString: process.env.DATABASE_URL, // URL de conexión desde las variables de entorno
-  ssl: { rejectUnauthorized: false }, // Habilita SSL si es necesario
+// Configura el cliente para Turso
+export const pool = createClient({
+  url: process.env.DATABASE_URL as string, // URL de conexión a Turso
+  authToken: process.env.DATABASE_AUTH_TOKEN, // Token de autenticación (si aplica)
 });
 
-// Manejo de errores
-pool.on('error', (err) => {
-  console.error('Error en el pool de conexiones:', err);
-});
+// Exporta una función genérica para ejecutar consultas
+export const queryDB = async (query: string, params: any[] = []) => {
+  try {
+    const result = await pool.execute(query);
+    return result.rows; // Devuelve las filas de la consulta
+  } catch (error) {
+    console.error('Error al ejecutar la consulta:', error);
+    throw error;
+  }
+};
