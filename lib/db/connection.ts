@@ -9,7 +9,7 @@ export const pool = createClient({
 // Exporta una función genérica para ejecutar consultas
 export const queryDB = async (query: string, params: any[] = []) => {
   try {
-    const result = await pool.execute(query);
+    const result = await pool.execute({sql: query, args: params}); // Asegúrate de pasar params
     return result.rows; // Devuelve las filas de la consulta
   } catch (error) {
     console.error('Error al ejecutar la consulta:', error);

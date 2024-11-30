@@ -31,7 +31,7 @@ export async function POST(req: NextRequest) {
       body.humedad,
       body.distancia,
     ];
-    const result = await queryDB(query, values);
+    const result = await queryDB(query, values); // Pasa los parámetros
 
     return NextResponse.json(result[0], { status: 200 });
   } catch (error) {

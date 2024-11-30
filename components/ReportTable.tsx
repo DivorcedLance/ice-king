@@ -18,21 +18,21 @@ const ReportTable: React.FC = () => {
   const fetchReports = async () => {
     setLoading(true);
     setError(null);
-
+  
     try {
       const response = await fetch('/api/reporte', {
-        method: 'GET',
+        method: 'GET', // Cambia a GET
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
+  
       if (!response.ok) {
         throw new Error('Error al consumir la API');
       }
-
+  
       const data = await response.json();
-      setReports((prevReports) => [...prevReports, ...data]);
+      setReports(data); // Actualiza los reportes con los datos obtenidos
     } catch (err: any) {
       setError(err.message);
     } finally {
