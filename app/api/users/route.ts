@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { queryDB } from '@/lib/db/config'; // Función para consultar la base de datos
 
 // Manejar la petición GET
