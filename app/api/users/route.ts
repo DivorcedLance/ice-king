@@ -1,20 +1,17 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { queryDB } from '@/lib/db/config'; // Importamos la función para consultar la base de datos
+import { NextRequest, NextResponse } from 'next';
+import { queryDB } from '@/lib/db/config'; // Función para consultar la base de datos
 
-// El handler debe manejar las peticiones GET
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-): Promise<void> {
-  if (req.method === 'GET') {
-    try {
-      // Realizamos la consulta SQL a la tabla "users"
-      const users = await queryDB('SELECT * FROM users');
-      res.status(200).json(users); // Respondemos con los datos de los usuarios
-    } catch (error) {
-      res.status(500).json({ error: 'Error al obtener los usuarios' });
-    }
-  } else {
-    res.status(405).end(); // Método no permitido si no es GET
+// Manejar la petición GET
+export async function GET(req: NextRequest) {
+  try {
+    // Realizamos la consulta SQL a la base de datos (por ejemplo, obteniendo todos los usuarios)
+    const users = await queryDB('SELECT * FROM estacion_meteorologica');
+
+    // Retornar los datos obtenidos como respuesta en formato JSON
+    return NextResponse.json(users, { status: 200 });
+  } catch (error) {
+    console.error(error);
+    // En caso de error, respondemos con un código de error y mensaje
+    return NextResponse.json({ error: 'Error al obtener los datos' }, { status: 500 });
   }
 }
