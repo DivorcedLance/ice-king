@@ -1,6 +1,6 @@
 import React from 'react';
-import ReportTable from '@/components/ReportTable';
-import ReportForm from '@/components/ReportForm';
+import ReportTable from '@/components/Reports/ReportTable';
+import ReportForm from '@/components/Reports/ReportForm';
 
 const Reportes: React.FC = () => {
   return (
