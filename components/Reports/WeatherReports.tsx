@@ -1,7 +1,7 @@
 "use client";
 
 import { WeatherData } from "@/app/types/weather";
-import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
@@ -27,7 +27,7 @@ export function WeatherReport({ data }: WeatherReportProps) {
   }));
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 flex flex-col items-center">
       <Card>
         <CardHeader>
           <CardTitle>Temperature Distribution</CardTitle>
@@ -40,16 +40,14 @@ export function WeatherReport({ data }: WeatherReportProps) {
                 color: "hsl(var(--chart-1))",
               },
             }}
-            className="h-[300px]"
+            className="h-[300px] "
           >
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={chartData}>
-                <XAxis dataKey="time" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="temperature" fill="var(--color-temperature)" />
-              </BarChart>
-            </ResponsiveContainer>
+            <BarChart data={chartData}>
+              <XAxis dataKey="time" />
+              <YAxis />
+              <ChartTooltip content={<ChartTooltipContent />} />
+              <Bar dataKey="temperature" fill="var(--color-temperature)" />
+            </BarChart>
           </ChartContainer>
         </CardContent>
       </Card>
@@ -69,14 +67,12 @@ export function WeatherReport({ data }: WeatherReportProps) {
               }}
               className="h-[300px]"
             >
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
-                  <XAxis dataKey="time" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="humidity" fill="var(--color-humidity)" />
-                </BarChart>
-              </ResponsiveContainer>
+              <BarChart data={chartData}>
+                <XAxis dataKey="time" />
+                <YAxis />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Bar dataKey="humidity" fill="var(--color-humidity)" />
+              </BarChart>
             </ChartContainer>
           </CardContent>
         </Card>
@@ -95,14 +91,12 @@ export function WeatherReport({ data }: WeatherReportProps) {
               }}
               className="h-[300px]"
             >
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={chartData}>
-                  <XAxis dataKey="time" />
-                  <YAxis />
-                  <ChartTooltip content={<ChartTooltipContent />} />
-                  <Bar dataKey="pressure" fill="var(--color-pressure)" />
-                </BarChart>
-              </ResponsiveContainer>
+              <BarChart data={chartData}>
+                <XAxis dataKey="time" />
+                <YAxis />
+                <ChartTooltip content={<ChartTooltipContent />} />
+                <Bar dataKey="pressure" fill="var(--color-pressure)" />
+              </BarChart>
             </ChartContainer>
           </CardContent>
         </Card>
