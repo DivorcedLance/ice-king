@@ -48,19 +48,19 @@ export const WeatherDashboard: React.FC<Props> = ({
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {latestReport && (
-          <WeatherCard
-            title="Current Readings"
-            temperature={latestReport.temperatura}
-            humidity={latestReport.humedad}
-            pressure={latestReport.presion}
-          />
-        )}
+        <WeatherCard
+          title="Current Readings"
+          temperature={latestReport?.temperatura}
+          humidity={latestReport?.humedad}
+          pressure={latestReport?.presion}
+          isLoading={isLoadingLatest}
+        />
         <WeatherCard
           title="Average Readings"
           humidity={calculateAverage(humidityList)}
           temperature={calculateAverage(temperatureList)}
           pressure={calculateAverage(pressureList)}
+          isLoading={isLoadingLatest}
         />
         <StationStatus lastReading={latestReport} isOnline />
       </div>

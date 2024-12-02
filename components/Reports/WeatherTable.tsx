@@ -135,7 +135,7 @@ export default function WeatherTable({ data }: Props) {
                   </Badge>
                 </TableCell>
                 <TableCell className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                  {new Date(row.created_at).toLocaleString()}
+                  {row.created_at}
                 </TableCell>
               </TableRow>
             ))}

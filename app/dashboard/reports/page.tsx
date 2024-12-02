@@ -7,9 +7,8 @@ function ReportsPage() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <WeatherReport data={reports} timeRange="24h" />
-      {/* Si es tabla */}
-      <WeatherTable data={reports} />
+      <WeatherReport data={reports} />
+      <WeatherTable data={reports.slice().reverse()} />
     </div>
   );
 }

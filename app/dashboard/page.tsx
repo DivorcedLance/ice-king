@@ -3,6 +3,7 @@ import React from "react";
 import useWeatherData from "../hooks/useWeatherData";
 import { WeatherDashboard } from "@/components/Dashboard/WeatherDashboard";
 import { WeatherChart } from "@/components/Dashboard/WeatherChart";
+import WeatherLoader from "@/components/Loaders/WeatherLoader";
 
 const Page: React.FC = () => {
   const {
@@ -13,7 +14,7 @@ const Page: React.FC = () => {
   } = useWeatherData();
 
   if (isLoadingLatest) {
-    return <div>Loading...</div>;
+    return <WeatherLoader />;
   }
 
   if (latestError) {
@@ -25,7 +26,9 @@ const Page: React.FC = () => {
       {reports ? (
         <WeatherDashboard
           reports={reports}
-          latestReport={reports[0]}
+          latestReport={reports.sort(
+            (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+          )[reports.length - 1]}
           isLoadingLatest={isLoadingLatest}
           latestError={latestError}
           refreshLatest={refreshLatest}

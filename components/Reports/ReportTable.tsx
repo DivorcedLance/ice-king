@@ -21,7 +21,7 @@ const ReportTable: React.FC = () => {
   
     try {
       const response = await fetch('/api/reporte', {
-        method: 'GET', // Cambia a GET
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
         },
@@ -32,7 +32,7 @@ const ReportTable: React.FC = () => {
       }
   
       const data = await response.json();
-      setReports(data); // Actualiza los reportes con los datos obtenidos
+      setReports(data.reports);
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -41,7 +41,6 @@ const ReportTable: React.FC = () => {
   };
 
   useEffect(() => {
-    // Llama a la función fetchReports al cargar el componente
     fetchReports();
   }, []);
 

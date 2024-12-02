@@ -13,6 +13,7 @@ export const StationStatus: React.FC<StationStatusProps> = ({
   lastReading,
   isOnline,
 }) => {
+
   return (
     <div className="bg-gradient-to-br from-white via-blue-50 to-white dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl p-6 transform transition-transform duration-300 hover:scale-105">
       <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-600 pb-2">
@@ -57,11 +58,7 @@ export const StationStatus: React.FC<StationStatusProps> = ({
               </span>
             </div>
             <span className="text-lg text-gray-800 dark:text-gray-100 font-medium">
-              {new Date(lastReading.created_at).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-              })}
+              {lastReading.created_at}
             </span>
           </div>
         )}

@@ -4,12 +4,28 @@ import { queryDB } from "@/lib/db/connection";
 export async function GET() {
   try {
     // Consulta los últimos 10 reportes
-    const query = "SELECT * FROM reportes ORDER BY id DESC LIMIT 10;";
+    const query = "SELECT * FROM reportes ORDER BY id ASC;";
     const reports = await queryDB(query);
-    // Retorna los reportes
+    // Devuelve los datos convertidos
     return NextResponse.json(
       {
-        reports,
+        reports: reports.map((report) => {
+          const utcTimestamp = (report.created_at as string).replace(" ", "T") + "Z";
+          const dateInUTC = new Date(utcTimestamp);
+          return {
+            ...report,
+            created_at: new Intl.DateTimeFormat("es-MX", {
+              timeZone: "America/Lima",
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              second: "2-digit",
+              hour12: false,
+            }).format(dateInUTC),
+          };
+        }),
       },
       { status: 200 }
     );

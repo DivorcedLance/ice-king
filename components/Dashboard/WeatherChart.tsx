@@ -9,6 +9,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { format, parse } from "date-fns"; // Asegúrate de instalar esta biblioteca: `npm install date-fns`
 
 interface WeatherData {
   id: number | null;
@@ -27,10 +28,7 @@ interface WeatherChartProps {
 export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
   const formattedData = data.map((item) => ({
     ...item,
-    time: new Date(item.created_at).toLocaleTimeString("es-AR", {
-      hour: "numeric",
-      minute: "numeric",
-    }),
+    time: format(parse(item.created_at, "dd/MM/yyyy, HH:mm:ss", new Date()), "dd/MM HH:mm")
   }));
 
   return (
@@ -50,7 +48,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
             tickMargin={10}
             axisLine={{ stroke: "#9ca3af" }}
             label={{
-              value: "Time",
+              value: "Timestamp",
               position: "insideBottomRight",
               offset: -10,
               fill: "#4b5563",
