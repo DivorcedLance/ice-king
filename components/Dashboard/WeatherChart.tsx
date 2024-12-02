@@ -41,13 +41,18 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
 
   return (
     <div className="bg-gradient-to-r from-blue-50 to-white rounded-2xl shadow-lg p-8 h-[500px] mx-auto max-w-[1200px] w-full sm:h-[600px] md:h-[700px] lg:h-[800px]">
-      <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
         Tendencias Meteorológicas
       </h2>
       <ResponsiveContainer width="100%" height="85%">
         <LineChart
           data={formattedData}
-          margin={{ top: 0, right: 20, left: isSmallScreen ? 20 : 50, bottom: 20 }}
+          margin={{
+            top: 0,
+            right: 20,
+            left: isSmallScreen ? 20 : 50,
+            bottom: 20,
+          }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
           {!isSmallScreen && (
@@ -107,7 +112,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
           />
           <Legend
             verticalAlign="top"
-            height={isSmallScreen ? 80 : 36 }
+            height={isSmallScreen ? 80 : 36}
             iconType="circle"
             wrapperStyle={{
               paddingBottom: "20px",

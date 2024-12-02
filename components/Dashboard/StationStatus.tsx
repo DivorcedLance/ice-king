@@ -13,11 +13,10 @@ export const StationStatus: React.FC<StationStatusProps> = ({
   lastReading,
   isOnline,
 }) => {
-
   return (
     <div className="bg-gradient-to-br from-white via-blue-50 to-white dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl p-6 transform transition-transform duration-300 hover:scale-105">
-      <h2 className="text-xl font-semibold mb-6 text-gray-800 border-b border-gray-200 pb-2">
-        Estatus de la estación
+      <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100 border-b border-gray-200 dark:border-gray-600 pb-2">
+        Station Status
       </h2>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
@@ -57,7 +56,7 @@ export const StationStatus: React.FC<StationStatusProps> = ({
                 Last Update
               </span>
             </div>
-            <span className="text-lg text-gray-800 dark:text-gray-100 font-medium">
+            <span className="text-lg custom-sm:text-[15px] custom-sm:pl-[8px] text-gray-800 dark:text-gray-100 font-medium">
               {lastReading.created_at}
             </span>
           </div>

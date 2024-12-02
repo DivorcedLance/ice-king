@@ -1,5 +1,5 @@
-import React from "react";
-import { Thermometer, Droplets, Gauge } from "lucide-react";
+import React from 'react';
+import { Thermometer, Droplets, Gauge } from 'lucide-react';
 
 interface WeatherCardProps {
   title: string;
@@ -21,7 +21,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   );
 
   return (
-    <div className="bg-gradient-to-br from-white via-blue-50 to-white dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl p-6 transform transition-transform duration-300 hover:scale-105">
+    <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
       <h2 className="text-xl font-semibold mb-6 text-gray-800 border-b border-gray-200 pb-2">
         {title}
       </h2>
@@ -33,7 +33,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
             </div>
             <span className="text-gray-600">Temperature</span>
           </div>
-          <span className="text-2xl font-bold text-gray-800">
+          <span className="text-lg custom-sm:text-base custom-sm:pl-[8px] sm:text-base md:text-xl lg:text-2xl font-bold text-gray-800">
             {isLoading ? <Skeleton /> : `${temperature?.toFixed(1)}°C`}
           </span>
         </div>
@@ -45,7 +45,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
             </div>
             <span className="text-gray-600">Humidity</span>
           </div>
-          <span className="text-2xl font-bold text-gray-800">
+          <span className="text-lg custom-sm:text-base custom-sm:pl-[8px] sm:text-base md:text-xl lg:text-2xl font-bold text-gray-800">
             {isLoading ? <Skeleton /> : `${humidity?.toFixed(1)}%`}
           </span>
         </div>
@@ -57,7 +57,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
             </div>
             <span className="text-gray-600">Pressure</span>
           </div>
-          <span className="text-2xl font-bold text-gray-800">
+          <span className="text-lg custom-sm:text-base custom-sm:pl-[24px] sm:text-base md:text-xl lg:text-2xl font-bold text-gray-800">
             {isLoading ? <Skeleton /> : `${pressure?.toFixed(1)} hPa`}
           </span>
         </div>

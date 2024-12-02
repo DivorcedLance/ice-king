@@ -19,12 +19,14 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
   return (
     <div className="relative z-40">
       {/* Toggle button for smaller screens */}
-      <button
-        className="absolute top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-md lg:hidden"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <Menu size={24} />
-      </button>
+      <div className="w-full bg-blue-600">
+        <button
+          className="top-4 left-4 z-50  p-2 bg-blue-600 text-white rounded-md lg:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <Menu size={24} />
+        </button>
+      </div>
 
       {/* Sidebar container */}
       <div
@@ -40,8 +42,12 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
             height={500}
             alt="Weather Hub"
           />
-          <h2 className="pt-4 text-white text-center text-xl font-bold">Neptor Weather Hub</h2>
-          <p className="text-blue-200 text-center text-sm">Estación de monitoreo climático</p>
+          <h2 className="pt-4 text-white text-center text-xl font-bold">
+            Neptor Weather Hub
+          </h2>
+          <p className="text-blue-200 text-center text-sm">
+            Estación de monitoreo climático
+          </p>
         </div>
         <div className="space-y-2">
           {menuItems.map(({ id, icon: Icon, label, href }) => (
@@ -75,4 +81,3 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
     </div>
   );
 };
-  
