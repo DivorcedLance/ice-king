@@ -1,6 +1,5 @@
 "use client";
 import { Sidebar } from "@/components/Dashboard/Sidebar";
-import { Cloud } from "lucide-react";
 
 interface Props {
   children: React.ReactNode;
@@ -20,10 +19,6 @@ function Layout({ children }: Props) {
         <header className="px-4 bg-white shadow-lg">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 py-4 md:py-6">
             <div className="flex flex-wrap items-centerspace-y-2 sm:space-y-0 sm:space-x-4">
-              {/* Icon with hover animation */}
-              {/* <div className="p-3 bg-blue-100 rounded-xl transition transform hover:scale-110">
-                <Cloud className="h-8 w-8 text-blue-600 animate-spin-slow" />
-              </div> */}
 
               {/* Titles */}
               <div>
