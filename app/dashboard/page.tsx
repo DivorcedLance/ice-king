@@ -22,7 +22,7 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className="p-4 space-y-6 bg-gray-100 min-h-screen flex flex-col justify-center overflow-visible md:justify-between md:items-center">
+    <div className="p-4 space-y-6 min-h-screen flex flex-col justify-center overflow-visible md:justify-between md:items-center"> 
       {reports ? (
         <>
           {/* Sección del Dashboard */}

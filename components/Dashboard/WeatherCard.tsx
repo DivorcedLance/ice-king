@@ -21,7 +21,7 @@ export const WeatherCard: React.FC<WeatherCardProps> = ({
   );
 
   return (
-    <div className="bg-gradient-to-br from-white to-blue-50 rounded-2xl shadow-xl p-6 transform transition-all duration-300 hover:scale-105">
+    <div className="bg-gradient-to-br from-white via-blue-50 to-white dark:from-gray-800 dark:to-gray-700 rounded-2xl shadow-xl p-6 transform transition-transform duration-300 hover:scale-105">
       <h2 className="text-xl font-semibold mb-6 text-gray-800 border-b border-gray-200 pb-2">
         {title}
       </h2>
