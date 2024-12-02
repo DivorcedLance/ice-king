@@ -22,25 +22,34 @@ const Page: React.FC = () => {
   }
 
   return (
-    <div className="p-4 space-y-6 bg-gray-100 min-h-screen flex flex-col justify-center overflow-visible">
+    <div className="p-4 space-y-6 bg-gray-100 min-h-screen flex flex-col justify-center overflow-visible md:justify-between md:items-center">
       {reports ? (
-        <WeatherDashboard
-          reports={reports}
-          latestReport={reports.sort(
-            (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
-          )[reports.length - 1]}
-          isLoadingLatest={isLoadingLatest}
-          latestError={latestError}
-          refreshLatest={refreshLatest}
-        />
+        <>
+          {/* Sección del Dashboard */}
+          <div className="w-full max-w-5xl">
+            <WeatherDashboard
+              reports={reports}
+              latestReport={reports.sort(
+                (a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime()
+              )[reports.length - 1]}
+              isLoadingLatest={isLoadingLatest}
+              latestError={latestError}
+              refreshLatest={refreshLatest}
+            />
+          </div>
+  
+          {/* Sección del Gráfico */}
+          <div className="p-4 w-full max-w-5xl">
+            <WeatherChart data={reports} />
+          </div>
+        </>
       ) : (
-        <div>No hay datos</div>
+        <div className="text-center text-gray-500 text-lg">
+          No hay datos disponibles
+        </div>
       )}
-      <div className="p-4 w-full h-full">
-        <WeatherChart data={reports} />
-      </div>
     </div>
   );
-};
+}
 
 export default Page;

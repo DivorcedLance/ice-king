@@ -143,9 +143,9 @@ export default function WeatherTable({ data }: Props) {
         </Table>
       </div>
 
-      <div className="mt-6 flex justify-center">
+      <div className="mt-6 flex flex-wrap justify-center gap-2">
         <Pagination>
-          <PaginationContent>
+          <PaginationContent className="flex flex-wrap gap-2">
             <PaginationItem>
               <PaginationPrevious
                 onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
@@ -153,7 +153,7 @@ export default function WeatherTable({ data }: Props) {
                   currentPage === 1
                     ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                     : "bg-blue-500 text-white hover:bg-blue-600"
-                } px-3 py-2 rounded-md transition-colors duration-200`}
+                } px-3 py-2 rounded-md transition-colors`}
               >
                 Anterior
               </PaginationPrevious>
@@ -167,7 +167,7 @@ export default function WeatherTable({ data }: Props) {
                     currentPage === page
                       ? "bg-blue-600 text-white"
                       : "bg-white text-blue-500 hover:bg-blue-100"
-                  } px-3 py-2 rounded-md border border-blue-500 transition-colors duration-200`}
+                  } px-3 py-2 rounded-md border border-blue-500 transition-colors`}
                 >
                   {page}
                 </PaginationLink>
@@ -182,7 +182,7 @@ export default function WeatherTable({ data }: Props) {
                   currentPage === totalPages
                     ? "bg-gray-200 text-gray-500 cursor-not-allowed"
                     : "bg-blue-500 text-white hover:bg-blue-600"
-                } px-3 py-2 rounded-md transition-colors duration-200`}
+                } px-3 py-2 rounded-md transition-colors`}
               >
                 Siguiente
               </PaginationNext>

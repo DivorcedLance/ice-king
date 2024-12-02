@@ -3,10 +3,8 @@ import { queryDB } from "@/lib/db/connection";
 
 export async function GET() {
   try {
-    // Consulta los últimos 10 reportes
     const query = "SELECT * FROM reportes ORDER BY id ASC;";
     const reports = await queryDB(query);
-    // Devuelve los datos convertidos
     return NextResponse.json(
       {
         reports: reports.map((report) => {

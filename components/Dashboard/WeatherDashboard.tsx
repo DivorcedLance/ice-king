@@ -29,7 +29,7 @@ export const WeatherDashboard: React.FC<Props> = ({
   if (latestError) {
     return (
       <ErrorState
-        message="Failed to fetch weather data. Please try again."
+        message="Error al obtener datos del clima. Por favor, inténtalo de nuevo."
         onRetry={() => {
           refreshLatest();
         }}
@@ -46,23 +46,26 @@ export const WeatherDashboard: React.FC<Props> = ({
   const pressureList = reports.map((report) => report.presion);
 
   return (
-    <div className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="space-y-6 px-4 md:px-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         <WeatherCard
-          title="Current Readings"
+          title="Lecturas actuales"
           temperature={latestReport?.temperatura}
           humidity={latestReport?.humedad}
           pressure={latestReport?.presion}
           isLoading={isLoadingLatest}
         />
         <WeatherCard
-          title="Average Readings"
+          title="Promedio de lecturas"
           humidity={calculateAverage(humidityList)}
           temperature={calculateAverage(temperatureList)}
           pressure={calculateAverage(pressureList)}
           isLoading={isLoadingLatest}
         />
-        <StationStatus lastReading={latestReport} isOnline />
+        <StationStatus
+          lastReading={latestReport}
+          isOnline
+        />
       </div>
     </div>
   );

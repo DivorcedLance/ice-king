@@ -9,7 +9,8 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { format, parse } from "date-fns"; // Asegúrate de instalar esta biblioteca: `npm install date-fns`
+import { format, parse } from "date-fns";
+import { es } from "date-fns/locale";
 
 interface WeatherData {
   id: number | null;
@@ -26,30 +27,33 @@ interface WeatherChartProps {
 }
 
 export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
-  const formattedData = data.map((item) => {
-    return {
+  const formattedData = data.map((item) => ({
     ...item,
-    time: format(parse(item.created_at, "dd/MM/yyyy, HH:mm:ss", new Date()), "dd/MM HH:mm")
-  }});
+    tiempo: format(
+      parse(item.created_at, "dd/MM/yyyy, HH:mm:ss", new Date()),
+      "dd/MM HH:mm",
+      { locale: es }
+    ),
+  }));
 
   return (
     <div className="bg-gradient-to-r from-blue-50 to-white rounded-2xl shadow-lg p-8 h-[500px] mx-auto max-w-[1200px]">
       <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
-        Weather Trends
+        Tendencias Meteorológicas
       </h2>
       <ResponsiveContainer width="100%" height="85%">
         <LineChart
           data={formattedData}
-          margin={{ top: 20, right: 50, left: 20, bottom: 20 }}
+          margin={{ top: 20, right: 20, left: 50, bottom: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
           <XAxis
-            dataKey="time"
+            dataKey="tiempo"
             tick={{ fontSize: 12, fill: "#4b5563" }}
             tickMargin={10}
             axisLine={{ stroke: "#9ca3af" }}
             label={{
-              value: "Timestamp",
+              value: "Fecha y Hora",
               position: "insideBottomRight",
               offset: -10,
               fill: "#4b5563",
@@ -61,43 +65,23 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
             tick={{ fontSize: 12, fill: "#ef4444" }}
             tickMargin={10}
             axisLine={{ stroke: "#ef4444" }}
-            label={{
-              value: "Temperature (°C)",
-              angle: -90,
-              position: "insideLeft",
-              fill: "#ef4444",
-              offset: 0,
-            }}
+            className="hidden sm:block" // Ocultar en pantallas pequeñas
           />
           <YAxis
             yAxisId="humid"
-            orientation="right"
             domain={[0, 100]}
             tick={{ fontSize: 12, fill: "#3b82f6" }}
             tickMargin={10}
             axisLine={{ stroke: "#3b82f6" }}
-            label={{
-              value: "Humidity (%)",
-              angle: -90,
-              position: "insideRight",
-              fill: "#3b82f6",
-              offset: 20,
-            }}
+            className="hidden sm:block" // Ocultar en pantallas pequeñas
           />
           <YAxis
             yAxisId="pressure"
-            orientation="right"
             domain={["auto", "auto"]}
             tick={{ fontSize: 12, fill: "#10b981" }}
-            tickMargin={40}
+            tickMargin={10}
             axisLine={{ stroke: "#10b981" }}
-            label={{
-              value: "Pressure (hPa)",
-              angle: -90,
-              position: "insideRight",
-              fill: "#10b981",
-              offset: 40,
-            }}
+            className="hidden sm:block" // Ocultar en pantallas pequeñas
           />
           <Tooltip
             contentStyle={{
@@ -131,7 +115,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
             type="monotone"
             dataKey="temperatura"
             stroke="#ef4444"
-            name="Temperature (°C)"
+            name="Temperatura (°C)"
             strokeWidth={2.5}
             dot={{ r: 3, strokeWidth: 2 }}
             activeDot={{ r: 6, strokeWidth: 0 }}
@@ -141,7 +125,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
             type="monotone"
             dataKey="humedad"
             stroke="#3b82f6"
-            name="Humidity (%)"
+            name="Humedad (%)"
             strokeWidth={2.5}
             dot={{ r: 3, strokeWidth: 2 }}
             activeDot={{ r: 6, strokeWidth: 0 }}
@@ -151,7 +135,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
             type="monotone"
             dataKey="presion"
             stroke="#10b981"
-            name="Pressure (hPa)"
+            name="Presión (hPa)"
             strokeWidth={2.5}
             dot={{ r: 3, strokeWidth: 2 }}
             activeDot={{ r: 6, strokeWidth: 0 }}
