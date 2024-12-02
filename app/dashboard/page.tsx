@@ -26,7 +26,7 @@ const Page: React.FC = () => {
       {reports ? (
         <>
           {/* Sección del Dashboard */}
-          <div className="w-full max-w-5xl">
+          <div className="w-full max-w-7xl">
             <WeatherDashboard
               reports={reports}
               latestReport={reports.sort(
@@ -39,7 +39,7 @@ const Page: React.FC = () => {
           </div>
   
           {/* Sección del Gráfico */}
-          <div className="p-4 w-full max-w-5xl">
+          <div className="p-4 w-full max-w-7xl">
             <WeatherChart data={reports} />
           </div>
         </>

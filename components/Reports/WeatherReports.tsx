@@ -1,7 +1,7 @@
 "use client";
 
 import { WeatherData } from "@/app/types/weather";
-import { Bar, BarChart, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartContainer,
@@ -102,22 +102,24 @@ export function WeatherReport({ data }: WeatherReportProps) {
             <CardTitle>Temperatura (°C)</CardTitle>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                temperature: {
-                  label: "Temperatura (°C)",
-                  color: "hsl(var(--chart-1))",
-                },
-              }}
-              className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
-            >
-              <BarChart data={chartData}>
-                <XAxis dataKey="time" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="temperature" fill="var(--color-temperature)" />
-              </BarChart>
-            </ChartContainer>
+            <ResponsiveContainer width="100%" height="100%">
+              <ChartContainer
+                config={{
+                  temperature: {
+                    label: "Temperatura (°C)",
+                    color: "hsl(var(--chart-1))",
+                  },
+                }}
+                className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
+              >
+                <BarChart data={chartData}>
+                  <XAxis dataKey="time" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="temperature" fill="var(--color-temperature)" />
+                </BarChart>
+              </ChartContainer>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
 
@@ -126,22 +128,24 @@ export function WeatherReport({ data }: WeatherReportProps) {
             <CardTitle>Presión Atmosférica (hPa)</CardTitle>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                altitude: {
-                  label: "Presión Atmosférica (hPa)",
-                  color: "hsl(var(--chart-2))",
-                },
-              }}
-              className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
-            >
-              <BarChart data={chartData}>
-                <XAxis dataKey="time" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="pressure" fill="var(--color-pressure)" />
-              </BarChart>
-            </ChartContainer>
+            <ResponsiveContainer width="100%" height="100%">
+              <ChartContainer
+                config={{
+                  altitude: {
+                    label: "Presión Atmosférica (hPa)",
+                    color: "hsl(var(--chart-2))",
+                  },
+                }}
+                className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
+              >
+                <BarChart data={chartData}>
+                  <XAxis dataKey="time" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="pressure" fill="var(--color-pressure)" />
+                </BarChart>
+              </ChartContainer>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
 
@@ -150,22 +154,24 @@ export function WeatherReport({ data }: WeatherReportProps) {
             <CardTitle>Altitud (m)</CardTitle>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                humidity: {
-                  label: "Altitud (m)",
-                  color: "hsl(var(--chart-3))",
-                },
-              }}
-              className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
-            >
-              <BarChart data={chartData}>
-                <XAxis dataKey="time" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="altitude" fill="var(--color-altitude)" />
-              </BarChart>
-            </ChartContainer>
+            <ResponsiveContainer width="100%" height="100%">
+              <ChartContainer
+                config={{
+                  humidity: {
+                    label: "Altitud (m)",
+                    color: "hsl(var(--chart-3))",
+                  },
+                }}
+                className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
+              >
+                <BarChart data={chartData}>
+                  <XAxis dataKey="time" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="altitude" fill="var(--color-altitude)" />
+                </BarChart>
+              </ChartContainer>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
 
@@ -174,22 +180,24 @@ export function WeatherReport({ data }: WeatherReportProps) {
             <CardTitle>Humedad (%)</CardTitle>
           </CardHeader>
           <CardContent>
-            <ChartContainer
-              config={{
-                humidity: {
-                  label: "Humedad (%)",
-                  color: "hsl(var(--chart-4))",
-                },
-              }}
-              className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
-            >
-              <BarChart data={chartData}>
-                <XAxis dataKey="time" />
-                <YAxis />
-                <ChartTooltip content={<ChartTooltipContent />} />
-                <Bar dataKey="humidity" fill="var(--color-humidity)" />
-              </BarChart>
-            </ChartContainer>
+            <ResponsiveContainer width="100%" height="100%">
+              <ChartContainer
+                config={{
+                  humidity: {
+                    label: "Humedad (%)",
+                    color: "hsl(var(--chart-4))",
+                  },
+                }}
+                className="h-full min-h-[200px] max-h-[400px] sm:h-[250px]"
+              >
+                <BarChart data={chartData}>
+                  <XAxis dataKey="time" />
+                  <YAxis />
+                  <ChartTooltip content={<ChartTooltipContent />} />
+                  <Bar dataKey="humidity" fill="var(--color-humidity)" />
+                </BarChart>
+              </ChartContainer>
+            </ResponsiveContainer>
           </CardContent>
         </Card>
       </div>

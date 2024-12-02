@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { format, parse } from "date-fns";
 import { es } from "date-fns/locale";
+import { useMediaQuery } from "react-responsive";
 
 interface WeatherData {
   id: number | null;
@@ -27,6 +28,8 @@ interface WeatherChartProps {
 }
 
 export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 640px)" });
+
   const formattedData = data.map((item) => ({
     ...item,
     tiempo: format(
@@ -37,52 +40,53 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
   }));
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-white rounded-2xl shadow-lg p-8 h-[500px] mx-auto max-w-[1200px]">
+    <div className="bg-gradient-to-r from-blue-50 to-white rounded-2xl shadow-lg p-8 h-[500px] mx-auto max-w-[1200px] w-full sm:h-[600px] md:h-[700px] lg:h-[800px]">
       <h2 className="text-3xl font-bold mb-6 text-gray-800 text-center">
         Tendencias Meteorológicas
       </h2>
       <ResponsiveContainer width="100%" height="85%">
         <LineChart
           data={formattedData}
-          margin={{ top: 20, right: 20, left: 50, bottom: 20 }}
+          margin={{ top: 0, right: 20, left: isSmallScreen ? 20 : 50, bottom: 20 }}
         >
           <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" opacity={0.5} />
-          <XAxis
-            dataKey="tiempo"
-            tick={{ fontSize: 12, fill: "#4b5563" }}
-            tickMargin={10}
-            axisLine={{ stroke: "#9ca3af" }}
-            label={{
-              value: "Fecha y Hora",
-              position: "insideBottomRight",
-              offset: -10,
-              fill: "#4b5563",
-            }}
-          />
-          <YAxis
-            yAxisId="temp"
-            domain={["auto", "auto"]}
-            tick={{ fontSize: 12, fill: "#ef4444" }}
-            tickMargin={10}
-            axisLine={{ stroke: "#ef4444" }}
-            className="hidden sm:block" // Ocultar en pantallas pequeñas
-          />
-          <YAxis
-            yAxisId="humid"
-            domain={[0, 100]}
-            tick={{ fontSize: 12, fill: "#3b82f6" }}
-            tickMargin={10}
-            axisLine={{ stroke: "#3b82f6" }}
-            className="hidden sm:block" // Ocultar en pantallas pequeñas
-          />
-          <YAxis
-            yAxisId="pressure"
-            domain={["auto", "auto"]}
-            tick={{ fontSize: 12, fill: "#10b981" }}
-            tickMargin={10}
-            axisLine={{ stroke: "#10b981" }}
-            className="hidden sm:block" // Ocultar en pantallas pequeñas
-          />
+          {!isSmallScreen && (
+            <>
+              <XAxis
+                dataKey="tiempo"
+                tick={{ fontSize: 12, fill: "#4b5563" }}
+                tickMargin={10}
+                axisLine={{ stroke: "#9ca3af" }}
+                label={{
+                  value: "Fecha y Hora",
+                  position: "insideBottomRight",
+                  offset: -15,
+                  fill: "#4b5563",
+                }}
+              />
+              <YAxis
+                yAxisId="temp"
+                domain={["auto", "auto"]}
+                tick={{ fontSize: 12, fill: "#ef4444" }}
+                tickMargin={10}
+                axisLine={{ stroke: "#ef4444" }}
+              />
+              <YAxis
+                yAxisId="humid"
+                domain={[0, 100]}
+                tick={{ fontSize: 12, fill: "#3b82f6" }}
+                tickMargin={10}
+                axisLine={{ stroke: "#3b82f6" }}
+              />
+              <YAxis
+                yAxisId="pressure"
+                domain={["auto", "auto"]}
+                tick={{ fontSize: 12, fill: "#10b981" }}
+                tickMargin={10}
+                axisLine={{ stroke: "#10b981" }}
+              />
+            </>
+          )}
           <Tooltip
             contentStyle={{
               backgroundColor: "rgba(255, 255, 255, 0.95)",
@@ -103,7 +107,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
           />
           <Legend
             verticalAlign="top"
-            height={36}
+            height={isSmallScreen ? 80 : 36 }
             iconType="circle"
             wrapperStyle={{
               paddingBottom: "20px",
