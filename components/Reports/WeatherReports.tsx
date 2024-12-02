@@ -58,7 +58,6 @@ export function WeatherReport({ data }: WeatherReportProps) {
 
   useEffect(() => {
     console.log(data)
-    
   }, [data])
 
   return (

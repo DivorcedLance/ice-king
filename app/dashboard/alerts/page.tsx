@@ -8,14 +8,14 @@ function AlertPage() {
           severity: "critical",
           type: "temperature",
           timestamp: new Date().toISOString(),
-          message: "Server is down",
+          message: "Temperature too high",
         },
         {
           severity: "warning",
           timestamp: new Date().toISOString(),
           type: "humidity",
 
-          message: "High latency detected",
+          message: "Humidity too high",
         },
       ]}
     />

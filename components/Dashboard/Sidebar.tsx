@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { LayoutDashboard, BarChart2, AlertTriangle, Users } from "lucide-react";
+import { LayoutDashboard, BarChart2 } from "lucide-react";
 import Link from "next/link";
 
 interface SidebarProps {
@@ -11,8 +11,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeSection }) => {
   const menuItems = [
     { id: "overview", icon: LayoutDashboard, label: "Overview", href: "" },
     { id: "reports", icon: BarChart2, label: "Reports", href: "reports" },
-    { id: "alerts", icon: AlertTriangle, label: "Alerts", href: "alerts" },
-    { id: "users", icon: Users, label: "Users", href: "users" },
   ];
 
   return (

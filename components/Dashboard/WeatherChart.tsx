@@ -26,10 +26,11 @@ interface WeatherChartProps {
 }
 
 export const WeatherChart: React.FC<WeatherChartProps> = ({ data }) => {
-  const formattedData = data.map((item) => ({
+  const formattedData = data.map((item) => {
+    return {
     ...item,
     time: format(parse(item.created_at, "dd/MM/yyyy, HH:mm:ss", new Date()), "dd/MM HH:mm")
-  }));
+  }});
 
   return (
     <div className="bg-gradient-to-r from-blue-50 to-white rounded-2xl shadow-lg p-8 h-[500px] mx-auto max-w-[1200px]">

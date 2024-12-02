@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { WeatherData } from "../types/weather";
+import { WeatherData } from "@/app/types/weather";
 
 const useWeatherData = () => {
   const [data, setData] = useState<WeatherData[]>([]);
