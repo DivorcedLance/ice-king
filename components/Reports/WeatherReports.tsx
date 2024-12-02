@@ -131,7 +131,7 @@ export function WeatherReport({ data }: WeatherReportProps) {
             <ResponsiveContainer width="100%" height="100%">
               <ChartContainer
                 config={{
-                  altitude: {
+                  pressure: {
                     label: "Presión Atmosférica (hPa)",
                     color: "hsl(var(--chart-2))",
                   },
@@ -157,7 +157,7 @@ export function WeatherReport({ data }: WeatherReportProps) {
             <ResponsiveContainer width="100%" height="100%">
               <ChartContainer
                 config={{
-                  humidity: {
+                  altitude: {
                     label: "Altitud (m)",
                     color: "hsl(var(--chart-3))",
                   },
